@@ -42,3 +42,9 @@ class TrackedProcesses(Processes):
     def add_Process(self, process: Process) -> None:
         self._processes.append(process)
         self.save()
+
+    def check_active(self):
+        for process in self._processes:
+            if process.get_active():
+                return True
+        return False
