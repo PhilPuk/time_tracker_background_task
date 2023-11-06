@@ -1,0 +1,38 @@
+{
+  "League of Legends": {
+    "PID": 24892,
+    "NAME": "LeagueClientUx.exe",
+    "UI_NAME": "League of Legends",
+    "PATH": "C:\\Riot Games\\League of Legends\\LeagueClient.exe",
+    "ICON": "C:\\Riot Games\\League of Legends\\LeagueClient.exe",
+    "TIME": 1298.0577528476715,
+    "START_TIME": 1699293458.1852565
+  },
+  "OperaGX": {
+    "PID": 7616,
+    "NAME": "opera.exe",
+    "UI_NAME": "OperaGX",
+    "PATH": "D:\\Programme (x86)\\Opera GX\\launcher.exe",
+    "ICON": "D:\\Programme (x86)\\Opera GX\\launcher.exe",
+    "TIME": 1345.7211799621582,
+    "START_TIME": 1699293458.1852565
+  },
+  "Spotify": {
+    "PID": 1124,
+    "NAME": "Spotify.exe",
+    "UI_NAME": "Spotify",
+    "PATH": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.222.982.0_x64__zpdnekdrzrea0\\Spotify.exe",
+    "ICON": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.222.982.0_x64__zpdnekdrzrea0\\Spotify.exe",
+    "TIME": 842.014262676239,
+    "START_TIME": 1699293458.1852565
+  },
+  "Discord": {
+    "PID": 23164,
+    "NAME": "Discord.exe",
+    "UI_NAME": "Discord",
+    "PATH": "C:\\Users\\Phil\\AppData\\Local\\Discord\\app-1.0.9021",
+    "ICON": "C:\\Users\\Phil\\AppData\\Local\\Discord\\app-1.0.9021",
+    "TIME": 1298.0612144470215,
+    "START_TIME": 1699293458.1852565
+  }
+}
