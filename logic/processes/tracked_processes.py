@@ -20,7 +20,7 @@ class TrackedProcesses(Processes):
                 tracked_processes_dict = json.load(f)
             for entry in tracked_processes_dict.values():
                 self.get_processes().append(
-                    Process(entry["PID"], entry["NAME"], entry["UI_NAME"], entry["PATH"], entry["ICON"],
+                    Process(entry["PID"], entry["NAME"], entry["UI_NAME"], entry["PATH"],
                             entry["TIME"], entry["START_TIME"]))
 
     def save(self):
@@ -32,7 +32,6 @@ class TrackedProcesses(Processes):
                 "NAME": process.get_name(),
                 "UI_NAME": process.get_ui_name(),
                 "PATH": process.get_path(),
-                "ICON": process.get_icon(),
                 "TIME": process.get_time(),
                 "START_TIME": process.get_start_time()
             }

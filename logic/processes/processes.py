@@ -11,7 +11,7 @@ class Processes:
         self._processes = processes
 
     def save_processes_to_csv(self, filepath: str) -> None:
-        processes_dataframe = pd.DataFrame(columns=["pid", "name", "ui_name", "path", "icon", "time", "start_time"])
+        processes_dataframe = pd.DataFrame(columns=["pid", "name", "ui_name", "path", "time", "start_time"])
         processes_dataframe.to_csv(filepath)
 
     def get_process(self, pid: int = None, name: str = None) -> Process | int:

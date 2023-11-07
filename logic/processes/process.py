@@ -1,6 +1,7 @@
 from sys import path
 from pathlib import Path
 import psutil
+
 path.append(".../")
 from PIL import Image
 
@@ -11,7 +12,6 @@ class Process:
                  name: str = "",
                  ui_name: str = "",
                  exe_path: str = "",
-                 icon: Image = Image.open(str(Path(__file__).parent.parent.parent / "data" / "none.png")),
                  time: float = 0,
                  start_time: float = 0
                  ) -> None:
@@ -19,7 +19,6 @@ class Process:
         self._name = name
         self._ui_name = ui_name
         self._path = exe_path
-        self._icon = icon
         self._time = time
         self._start_time = start_time
         self._active = False
@@ -35,9 +34,6 @@ class Process:
 
     def get_path(self) -> str:
         return self._path
-
-    def get_icon(self):
-        return self._icon
 
     def get_time(self) -> float:
         return self._time
@@ -65,6 +61,5 @@ class Process:
                f"name: {self._name}\n" \
                f"ui_name: {self._ui_name}\n" \
                f"path: {self._path}\n" \
-               f"icon: {self._icon}\n" \
                f"time: {self._time}\n" \
                f"start_time: {self._start_time}\n"
