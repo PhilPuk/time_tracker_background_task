@@ -31,3 +31,7 @@ class Processes:
 
     def add_Process(self, process: Process) -> None:
         self._processes.append(process)
+
+    def update_activity(self) -> None:
+        for process in self._processes:
+            process.update()
