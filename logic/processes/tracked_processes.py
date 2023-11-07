@@ -9,14 +9,16 @@ from logic.processes.process import Process
 
 
 class TrackedProcesses(Processes):
-    def __init__(self):
+    def __init__(self, tracked_processes_json_path: Path = Path(
+        __file__).parent.parent.parent / "data" / "tracked_processes.json") -> None:
         super().__init__([])
+
+        self._tracked_processes_json_path = tracked_processes_json_path
         self._init_tracked_processes()
 
-    def _init_tracked_processes(self):
-        tmp_path = Path(__file__).parent.parent.parent / "data" / "tracked_processes.json"
-        if Path(tmp_path).exists():
-            with open(str(tmp_path), "r") as f:
+    def _init_tracked_processes(self) -> None:
+        if self._tracked_processes_json_path.exists():
+            with open(str(self._tracked_processes_json_path), "r") as f:
                 tracked_processes_dict = json.load(f)
             for entry in tracked_processes_dict.values():
                 self.get_processes().append(
@@ -24,7 +26,6 @@ class TrackedProcesses(Processes):
                             entry["TIME"], entry["START_TIME"]))
 
     def save(self):
-        tmp_path = Path(__file__).parent.parent.parent / "data" / "tracked_processes.json"
         tracked_processes_dict = {}
         for process in self.get_processes():
             tracked_processes_dict[process.get_ui_name()] = {
@@ -35,7 +36,7 @@ class TrackedProcesses(Processes):
                 "TIME": process.get_time(),
                 "START_TIME": process.get_start_time()
             }
-        with open(str(tmp_path), "w") as f:
+        with open(str(self._tracked_processes_json_path), "w") as f:
             json.dump(tracked_processes_dict, f)
 
     def add_Process(self, process: Process) -> None:
