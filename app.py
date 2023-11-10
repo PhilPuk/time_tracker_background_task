@@ -39,25 +39,30 @@ class App:
             else:
                 continue
 
+    def update(self):
+        for process in self.tracked_processes.get_processes():
+            if psutil.pid_exists(process.get_pid()):
+                process.add_time(time.time() - process.get_start_time())
+                process.set_start_time(time.time())
+            else:
+                self.machine_processes.update()
+                found, pid = self.start_find_process(process)
+                if found:
+                    log.info(f"Found process: {process.get_ui_name()} with PID: {pid}")
+                    process.set_start_time(time.time())
+                    process.set_pid(pid)
+                continue
+        self.tracked_processes.save()
+
     def run(self):
         try:
             self.start_tracking()
 
             while True:
                 processing_time_start = time.time()
-                for process in self.tracked_processes.get_processes():
-                    if psutil.pid_exists(process.get_pid()):
-                        process.add_time(time.time() - process.get_start_time())
-                        process.set_start_time(time.time())
-                    else:
-                        self.machine_processes.update()
-                        found, pid = self.start_find_process(process)
-                        if found:
-                            log.info(f"Found process: {process.get_ui_name()} with PID: {pid}")
-                            process.set_start_time(time.time())
-                            process.set_pid(pid)
-                        continue
-                self.tracked_processes.save()
+
+                self.update()
+
                 processing_time = time.time() - processing_time_start
                 log.info(f"Processing time: {processing_time}")
                 time.sleep(5.0 - processing_time if processing_time < 5.0 else 0.1)
@@ -67,31 +72,30 @@ class App:
             exit(0)
 
 
-tracked_processes = TrackedProcesses()
+def plot():
+    tracked_processes = TrackedProcesses()
 
-times = []
+    times = []
 
-for process in tracked_processes.get_processes():
-    times.append(process.get_time()/60.)
+    for process in tracked_processes.get_processes():
+        times.append(process.get_time() / 60.)
 
-fig, ax = plt.subplots()
-rects1 = ax.bar(x=range(len(times)), height=times)
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(x=range(len(times)), height=times)
 
-ax.set_ylim(0, max(times))
-ax.set_ylabel('time in min')
-ax.set_xticks(np.add(range(len(times)), 0.5))
-ax.set_xticklabels([process.get_ui_name() for process in tracked_processes.get_processes()])
+    ax.set_ylim(0, max(times))
+    ax.set_ylabel('time in min')
+    ax.set_xticks(np.add(range(len(times)), 0.5))
+    ax.set_xticklabels([process.get_ui_name() for process in tracked_processes.get_processes()])
 
+    def autolabel(rects):
+        # attach some text labels
+        for rect in rects:
+            height = rect.get_height()
+            ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
+                    '%d' % int(height),
+                    ha='center', va='bottom')
 
-def autolabel(rects):
-    # attach some text labels
-    for rect in rects:
-        height = rect.get_height()
-        ax.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
-                '%d' % int(height),
-                ha='center', va='bottom')
+    autolabel(rects1)
 
-
-autolabel(rects1)
-
-plt.show()
+    plt.show()
