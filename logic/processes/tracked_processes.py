@@ -37,7 +37,7 @@ class TrackedProcesses(Processes):
                 "START_TIME": process.get_start_time()
             }
         with open(str(self._tracked_processes_json_path), "w") as f:
-            json.dump(tracked_processes_dict, f)
+            json.dump(tracked_processes_dict, f, indent=4)
 
     def add_Process(self, process: Process) -> None:
         self._processes.append(process)
