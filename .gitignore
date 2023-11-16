@@ -3,3 +3,4 @@ venv/Lib
 venv/*
 .idea/*
 log.txt
+*.cpython-311.*
