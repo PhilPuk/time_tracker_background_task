@@ -4,3 +4,4 @@ venv/*
 .idea/*
 log.txt
 *.cpython-311.*
+data/machine_processes.json

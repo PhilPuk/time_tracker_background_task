@@ -3,8 +3,8 @@ import pandas as pd
 
 path.append(".../")
 
-from logic.processes.process import Process
-
+#from logic.processes.process import Process
+from process import Process
 
 class Processes:
     def __init__(self, processes: list | dict = None) -> None:
