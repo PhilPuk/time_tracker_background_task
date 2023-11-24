@@ -4,6 +4,7 @@ venv/*
 .idea/*
 log.txt
 *.cpython-311.*
+data/tracked_processes.json
 data/machine_processes.json
 process.cpython-310.pyc
 processes.cpython-310.pyc
