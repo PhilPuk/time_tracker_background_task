@@ -5,3 +5,5 @@ venv/*
 log.txt
 *.cpython-311.*
 data/machine_processes.json
+process.cpython-310.pyc
+processes.cpython-310.pyc
